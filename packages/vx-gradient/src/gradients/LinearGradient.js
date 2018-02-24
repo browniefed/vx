@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getPrimitives } from '@vx/primitives';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { getPrimitives } from "@vx/primitives";
 
 LinearGradient.propTypes = {
   id: PropTypes.string.isRequired,
@@ -26,9 +26,9 @@ export default function LinearGradient({
   y1,
   x2,
   y2,
-  fromOffset = '0%',
+  fromOffset = "0",
   fromOpacity = 1,
-  toOffset = '100%',
+  toOffset = "1",
   toOpacity = 1,
   rotate,
   transform,
@@ -36,37 +36,23 @@ export default function LinearGradient({
   ...restProps
 }) {
   if (vertical && !x1 && !x2 && !y1 && !y2) {
-    x1 = '0';
-    x2 = '0';
-    y1 = '0';
-    y2 = '1';
+    x1 = "0";
+    x2 = "0";
+    y1 = "0";
+    y2 = "1";
   }
   const { Defs, Stop, LinearGradient: LinearGrad } = getPrimitives();
 
+  const stops = (
+    <Fragment>
+      <Stop offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />
+      <Stop offset={toOffset} stopColor={to} stopOpacity={toOpacity} />
+    </Fragment>
+  );
   return (
     <Defs>
-      <LinearGrad
-        id={id}
-        x1={x1}
-        y1={y1}
-        x2={x2}
-        y2={y2}
-        gradientTransform={rotate ? `rotate(${rotate})` : transform}
-        {...restProps}
-      >
-        {!!children && children}
-        {!children &&
-          <Stop
-            offset={fromOffset}
-            stopColor={from}
-            stopOpacity={fromOpacity}
-          />}
-        {!children &&
-          <Stop
-            offset={toOffset}
-            stopColor={to}
-            stopOpacity={toOpacity}
-          />}
+      <LinearGrad id={id} x1={x1} y1={y1} x2={x2} y2={y2} {...restProps}>
+        {children ? children : stops}
       </LinearGrad>
     </Defs>
   );

@@ -13,6 +13,8 @@
     "@vx/primitives": "^0.0.158",
     "@vx/scale": "^0.0.153",
     "@vx/shape": "^0.0.158",
+    "@vx/glyph": "^0.0.158",
+    "@vx/gradient": "^0.0.158",
     "d3-array": "^1.2.1",
     "react": "16.2.0",
     "react-native": "0.53.3",

@@ -3,63 +3,59 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import * as RNSvg from "react-native-svg";
 import { buildInject } from "@vx/primitives";
 import * as Shape from "@vx/shape";
-import { Group } from "@vx/group";
-import { letterFrequency } from '@vx/mock-data';
-import { scaleBand, scaleLinear } from '@vx/scale';
-import { extent, max } from 'd3-array';
+import { Group } from '@vx/group';
+import { GlyphCircle } from '@vx/glyph';
+import * as Gradient from '@vx/gradient';
+import { scaleLinear } from '@vx/scale';
+import { genRandomNormalPoints } from '@vx/mock-data';
+
 buildInject(RNSvg);
 
 const { width, height } = Dimensions.get("window");
 
-const Svg = RNSvg.Svg;
+const { Svg, Rect } = RNSvg;
 
-const data = letterFrequency.slice(5);
+const points = genRandomNormalPoints(600).filter((d, i) => {
+  return i < 600;
+});
 
-function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
-
-// accessors
-const x = d => d.letter;
-const y = d => +d.frequency * 100;
-
+const x = d => d[0];
+const y = d => d[1];
+const z = d => d[2];
 
 export default class App extends Component {
   render() {
     const xMax = width;
-    const yMax = height - 120;
+    const yMax = height - 80;
+    if (width < 10) return null;
 
-    // scales
-    const xScale = scaleBand({
-      rangeRound: [0, xMax],
-      domain: data.map(x),
-      padding: 0.4,
+    const xScale = scaleLinear({
+      domain: [1.3, 2.2],
+      range: [0, xMax],
+      clamp: true,
     });
     const yScale = scaleLinear({
-      rangeRound: [yMax, 0],
-      domain: [0, max(data, y)],
+      domain: [0.75, 1.6],
+      range: [yMax, 0],
+      clamp: true,
     });
+
     return (
       <View style={styles.container}>
         <Svg width={width} height={height}>
-          <Group top={40}>
-            {data.map((d, i) => {
-              const barHeight = yMax - yScale(y(d));
+          <Gradient.GradientPinkRed id="pink" />
+          <Rect x={0} y={0} width={width} height={height} rx={14} fill={"url(#pink)"} />
+          <Group>
+            {points.map((point, i) => {
               return (
-                <Group key={`bar-${x(d)}`}>
-                  <Shape.Bar
-                    width={xScale.bandwidth()}
-                    height={barHeight}
-                    x={xScale(x(d))}
-                    y={yMax - barHeight}
-                    fill="rgba(23, 233, 217, .5)"
-                    data={{ x: x(d), y: y(d) }}
-                    onClick={data => event => {
-                      alert(`clicked: ${JSON.stringify(data)}`);
-                    }}
-                  />
-                </Group>
+                <GlyphCircle
+                  className="dot"
+                  key={`point-${point.x}-${i}`}
+                  fill={"#f6c431"}
+                  left={xScale(x(point))}
+                  top={yScale(y(point))}
+                  size={i % 3 === 0 ? 12 : 24}
+                />
               );
             })}
           </Group>
