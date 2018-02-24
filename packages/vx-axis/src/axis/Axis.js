@@ -8,6 +8,7 @@ import center from '../utils/center';
 import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
+import { Text } from 'react-primitives-svg';
 
 const propTypes = {
   axisClassName: PropTypes.string,
@@ -188,7 +189,7 @@ export default function Axis({
                 stroke={tickStroke}
               />
             )}
-            <text
+            <Text
               x={tickToPoint.x}
               y={
                 tickToPoint.y +
@@ -198,7 +199,7 @@ export default function Axis({
               {...tickLabelPropsObj}
             >
               {format(val, index)}
-            </text>
+            </Text>
           </Group>
         );
       })}
@@ -215,7 +216,7 @@ export default function Axis({
       )}
 
       {label && (
-        <text
+        <Text
           className={cx('vx-axis-label', labelClassName)}
           {...getLabelTransform({
             labelOffset,
@@ -228,7 +229,7 @@ export default function Axis({
           {...labelProps}
         >
           {label}
-        </text>
+        </Text>
       )}
     </Group>
   );
