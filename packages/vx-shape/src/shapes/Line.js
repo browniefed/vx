@@ -27,6 +27,7 @@ export default function Line({
   return (
     <SVGLine
       ref={innerRef}
+      className={cx('vx-line', className)}
       x1={from.x}
       y1={from.y}
       x2={to.x}
