@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getPrimitives } from '@vx/primitives';
 
@@ -28,6 +28,14 @@ export default function RadialGradient({
   ...restProps
 }) {
   const { Defs, Stop, RadialGradient: RadialGrad } = getPrimitives();
+
+  const stops = (
+    <Fragment>
+      <Stop offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />
+      <Stop offset={toOffset} stopColor={to} stopOpacity={toOpacity} />
+    </Fragment>
+  );
+
   return (
     <Defs>
       <RadialGrad
@@ -35,19 +43,7 @@ export default function RadialGradient({
         gradientTransform={rotate ? `rotate(${rotate})` : transform}
         {...restProps}
       >
-        {!!children && children}
-        {!children &&
-          <Stop
-            offset={fromOffset}
-            stopColor={from}
-            stopOpacity={fromOpacity}
-          />}
-        {!children &&
-          <Stop
-            offset={toOffset}
-            stopColor={to}
-            stopOpacity={toOpacity}
-          />}
+        {children ? children : stops}
       </RadialGrad>
     </Defs>
   );
