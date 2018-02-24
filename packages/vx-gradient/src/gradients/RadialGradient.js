@@ -48,7 +48,7 @@ export default function RadialGradient({
             stopColor={to}
             stopOpacity={toOpacity}
           />}
-      </radialGradient>
+      </RadialGrad>
     </Defs>
   );
 }
