@@ -67,7 +67,7 @@ export default function LinearGradient({
             stopColor={to}
             stopOpacity={toOpacity}
           />}
-      </linearGradient>
+      </LinearGrad>
     </Defs>
   );
 }
