@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Group } from '@vx/group';
 import { arc as d3Arc, pie as d3Pie } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Pie({
   className = '',
@@ -21,6 +22,8 @@ export default function Pie({
   pieValue,
   ...restProps
 }) {
+  const { Path, G } = getPrimitives();
+  
   const path = d3Arc();
   path.innerRadius(innerRadius);
   if (outerRadius) path.outerRadius(outerRadius);
@@ -37,8 +40,8 @@ export default function Pie({
         let c;
         if (centroid) c = path.centroid(arc);
         return (
-          <g key={`pie-arc-${i}`}>
-            <path
+          <G key={`pie-arc-${i}`}>
+            <Path
               className={cx('vx-pie-arc', className)}
               d={path(arc)}
               {...additionalProps(restProps, {
@@ -48,7 +51,7 @@ export default function Pie({
               })}
             />
             {centroid && centroid(c, arc)}
-          </g>
+          </G>
         );
       })}
     </Group>

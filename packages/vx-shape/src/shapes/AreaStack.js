@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import additionalProps from '../util/additionalProps';
 import { area, stack as d3stack } from 'd3-shape';
+import { getPrimitives } from '@vx/primitives';
 
 export default function AreaStack({
   className,
@@ -20,6 +21,8 @@ export default function AreaStack({
   reverse = false,
   ...restProps
 }) {
+  const { Path, G } = getPrimitives();
+  
   const stack = d3stack();
   if (keys) stack.keys(keys);
 
@@ -36,10 +39,10 @@ export default function AreaStack({
   if (reverse) seriesData.reverse();
 
   return (
-    <g>
+    <G>
       {seriesData.map((series, i) => {
         return (
-          <path
+          <Path
             className={cx('vx-area-stack', className)}
             key={`area-stack-${i}-${series.key || ''}`}
             d={path(series)}
@@ -52,9 +55,9 @@ export default function AreaStack({
         );
       })}
       {!!glyph &&
-        <g className="vx-area-stack-glyphs">
+        <G className="vx-area-stack-glyphs">
           {data.map(glyph)}
-        </g>}
-    </g>
+        </G>}
+    </G>
   );
 }

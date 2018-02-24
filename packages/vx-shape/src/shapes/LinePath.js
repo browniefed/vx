@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { line } from 'd3-shape';
 import { curveLinear } from '@vx/curve';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 LinePath.propTypes = {
   innerRef: PropTypes.func,
@@ -27,14 +28,16 @@ export default function LinePath({
   innerRef,
   ...restProps
 }) {
+  const { Path, G } = getPrimitives();
+  
   const path = line()
     .x(d => xScale(x(d)))
     .y(d => yScale(y(d)))
     .defined(defined)
     .curve(curve);
   return (
-    <g>
-      <path
+    <G>
+      <Path
         ref={innerRef}
         className={cx('vx-linepath', className)}
         d={path(data)}
@@ -46,8 +49,8 @@ export default function LinePath({
         {...additionalProps(restProps, data)}
       />
       {glyph && (
-        <g className="vx-linepath-glyphs">{data.map(glyph)}</g>
+        <G className="vx-linepath-glyphs">{data.map(glyph)}</G>
       )}
-    </g>
+    </G>
   );
 }

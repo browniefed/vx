@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { area } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 Area.propTypes = {
   x: PropTypes.func,
@@ -49,6 +50,8 @@ export default function Area({
   innerRef,
   ...restProps
 }) {
+  const { Path, G } = getPrimitives();
+  
   const path = area();
   if (x) path.x(d => xScale(x(d)));
   if (x0) path.x0(d => xScale(x0(d)));
@@ -59,8 +62,8 @@ export default function Area({
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   return (
-    <g>
-      <path
+    <G>
+      <Path
         ref={innerRef}
         className={cx('vx-area', className)}
         d={path(data)}
@@ -70,6 +73,6 @@ export default function Area({
         fill={fill}
         {...additionalProps(restProps, data)}
       />
-    </g>
+    </G>
   );
 }

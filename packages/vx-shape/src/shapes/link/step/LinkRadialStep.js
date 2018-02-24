@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { pointRadial } from 'd3-shape';
 import { path as d3Path } from 'd3-path';
 import additionalProps from '../../../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 LinkRadialStep.propTypes = {
   innerRef: PropTypes.func
@@ -19,7 +20,8 @@ export default function LinkRadialStep({
   target = d => d.target,
   ...restProps
 }) {
-  
+  const { Path } = getPrimitives();
+
   const link = (data) => {
     const sourceData = source(data);
     const targetData = target(data);
@@ -56,7 +58,7 @@ export default function LinkRadialStep({
   };
 
   return (
-    <path
+    <Path
       ref={innerRef}
       className={cx('vx-link', className)}
       d={link(data)}

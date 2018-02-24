@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Group({
   top = 0,
@@ -9,13 +10,14 @@ export default function Group({
   children,
   ...restProps,
 }) {
+  const { G } = getPrimitives();
   return (
-    <g
+    <G
       className={cx('cx-group', className)}
       transform={transform || `translate(${left}, ${top})`}
       {...restProps}
     >
       {children}
-    </g>
+    </G>
   );
 }

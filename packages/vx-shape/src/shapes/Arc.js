@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { arc as d3Arc } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Arc({
   className,
@@ -16,6 +17,8 @@ export default function Arc({
   padRadius,
   ...restProps
 }) {
+  const { Path } = getPrimitives();
+
   const arc = d3Arc();
   if (centroid) arc.centroid(centroid);
   if (innerRadius) arc.innerRadius(innerRadius);
@@ -26,7 +29,7 @@ export default function Arc({
   if (padAngle) arc.padAngle(padAngle);
   if (padRadius) arc.padRadius(padRadius);
   return (
-    <path
+    <Path
       className={cx('vx-arc', className)}
       d={arc(data)}
       {...additionalProps(restProps, data)}

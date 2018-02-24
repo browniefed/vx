@@ -3,10 +3,12 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Point } from '@vx/point';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 Line.propTypes = {
   innerRef: PropTypes.func,
 };
+
 
 export default function Line({
   from = new Point({ x: 0, y: 0 }),
@@ -20,10 +22,11 @@ export default function Line({
   innerRef,
   ...restProps
 }) {
+  const { Line: SVGLine } = getPrimitives();
+
   return (
-    <line
+    <SVGLine
       ref={innerRef}
-      className={cx('vx-line', className)}
       x1={from.x}
       y1={from.y}
       x2={to.x}

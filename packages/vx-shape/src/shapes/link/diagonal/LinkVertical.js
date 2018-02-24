@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { linkVertical } from 'd3-shape';
 import additionalProps from '../../../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 LinkVertical.propTypes = {
   innerRef: PropTypes.func,
@@ -18,6 +19,8 @@ export default function LinkVertical({
   target = d => d.target,
   ...restProps
 }) {
+  const { Path } = getPrimitives();
+
   const link = linkVertical();
   link.x(x);
   link.y(y);
@@ -25,7 +28,7 @@ export default function LinkVertical({
   link.target(target);
 
   return (
-    <path
+    <Path
       ref={innerRef}
       className={cx('vx-link-vertical', className)}
       d={link(data)}

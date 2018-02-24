@@ -1,0 +1,28 @@
+{
+  "name": "vxnative",
+  "version": "0.0.158",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "haul": "haul"
+  },
+  "dependencies": {
+    "@vx/shape": "^0.0.158",
+    "@vx/primitives": "^0.0.158",
+    "react": "16.2.0",
+    "react-native": "0.53.3",
+    "react-native-svg": "^6.2.2",
+    "react-proxy": "^1.1.8"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.1",
+    "babel-preset-react-native": "4.0.0",
+    "haul": "^1.0.0-beta.13",
+    "jest": "22.4.2",
+    "react-test-renderer": "16.2.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

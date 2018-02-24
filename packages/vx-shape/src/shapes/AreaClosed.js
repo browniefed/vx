@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { area } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 AreaClosed.propTypes = {
   innerRef: PropTypes.func,
@@ -24,6 +25,8 @@ export default function AreaClosed({
   innerRef,
   ...restProps
 }) {
+  const { Path, G } = getPrimitives();
+  
   const path = area()
     .x(d => xScale(x(d)))
     .y0(yScale.range()[0])
@@ -31,8 +34,8 @@ export default function AreaClosed({
     .defined(defined);
   if (curve) path.curve(curve);
   return (
-    <g>
-      <path
+    <G>
+      <Path
         ref={innerRef}
         className={cx('vx-area-closed', className)}
         d={path(data)}
@@ -42,6 +45,6 @@ export default function AreaClosed({
         fill={fill}
         {...additionalProps(restProps, data)}
       />
-    </g>
+    </G>
   );
 }
