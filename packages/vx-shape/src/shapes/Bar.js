@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import additionalProps from '../util/additionalProps';
+import { Rect } from 'react-primitives-svg';
 
 Bar.propTypes = {
   innerRef: PropTypes.func,
@@ -29,7 +30,7 @@ export default function Bar({
   ...restProps,
 }) {
   return (
-    <rect
+    <Rect
       ref={innerRef}
       className={cx('vx-bar', className)}
       x={x}

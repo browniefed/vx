@@ -5,6 +5,7 @@ import additionalProps from '../util/additionalProps';
 import stackOrder from '../util/stackOrder';
 import stackOffset from '../util/stackOffset';
 import { area, stack as d3stack } from 'd3-shape';
+import { Path } from 'react-primitives-svg';
 
 export default function Stack({
   className,
@@ -55,7 +56,7 @@ export default function Stack({
     <Group top={top} left={left}>
       {seriesData.map((series, i) => {
         return (
-          <path
+          <Path
             className={cx('vx-stack', className)}
             key={`stack-${i}-${series.key || ''}`}
             d={path(series)}

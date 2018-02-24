@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { pointRadial } from 'd3-shape';
 import { path as d3Path } from 'd3-path';
 import additionalProps from '../../../util/additionalProps';
+import { Path } from 'react-primitives-svg';
 
 LinkHorizontalCurve.propTypes = {
   innerRef: PropTypes.func
@@ -42,7 +43,7 @@ export default function LinkHorizontalCurve({
   };
 
   return (
-    <path
+    <Path
       ref={innerRef}
       className={cx('vx-link', className)}
       d={link(data)}

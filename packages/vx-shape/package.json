@@ -29,7 +29,8 @@
     "classnames": "^2.2.5",
     "d3-path": "^1.0.5",
     "d3-shape": "^1.2.0",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-primitives-svg": "^0.0.3"
   },
   "devDependencies": {
     "babel-jest": "^21.2.0",

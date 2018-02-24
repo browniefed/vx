@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { linkRadial } from 'd3-shape';
 import additionalProps from '../../../util/additionalProps';
+import { Path } from 'react-primitives-svg';
 
 LinkRadial.propTypes = {
   innerRef: PropTypes.func,
@@ -25,7 +26,7 @@ export default function LinkRadial({
   link.target(target);
 
   return (
-    <path
+    <Path
       ref={innerRef}
       className={cx('vx-link-radius', className)}
       d={link(data)}

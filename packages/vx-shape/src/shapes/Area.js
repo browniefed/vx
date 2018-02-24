@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { area } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { Path, G } from 'react-primitives-svg';
 
 Area.propTypes = {
   x: PropTypes.func,
@@ -59,8 +60,8 @@ export default function Area({
   if (defined) path.defined(defined);
   if (curve) path.curve(curve);
   return (
-    <g>
-      <path
+    <G>
+      <Path
         ref={innerRef}
         className={cx('vx-area', className)}
         d={path(data)}
@@ -70,6 +71,6 @@ export default function Area({
         fill={fill}
         {...additionalProps(restProps, data)}
       />
-    </g>
+    </G>
   );
 }

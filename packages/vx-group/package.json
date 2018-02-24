@@ -47,7 +47,8 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "react-primitives-svg": "^0.0.3"
   },
   "publishConfig": {
     "access": "public"

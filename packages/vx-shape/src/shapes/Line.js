@@ -3,6 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Point } from '@vx/point';
 import additionalProps from '../util/additionalProps';
+import { Line } from 'react-primitives-svg';
 
 Line.propTypes = {
   innerRef: PropTypes.func,
@@ -21,7 +22,7 @@ export default function Line({
   ...restProps
 }) {
   return (
-    <line
+    <Line
       ref={innerRef}
       className={cx('vx-line', className)}
       x1={from.x}

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { line } from 'd3-shape';
 import { curveLinear } from '@vx/curve';
 import additionalProps from '../util/additionalProps';
+import { Path, G } from 'react-primitives-svg';
 
 LinePath.propTypes = {
   innerRef: PropTypes.func,
@@ -33,8 +34,8 @@ export default function LinePath({
     .defined(defined)
     .curve(curve);
   return (
-    <g>
-      <path
+    <G>
+      <Path
         ref={innerRef}
         className={cx('vx-linepath', className)}
         d={path(data)}
@@ -46,8 +47,8 @@ export default function LinePath({
         {...additionalProps(restProps, data)}
       />
       {glyph && (
-        <g className="vx-linepath-glyphs">{data.map(glyph)}</g>
+        <G className="vx-linepath-glyphs">{data.map(glyph)}</G>
       )}
-    </g>
+    </G>
   );
 }
