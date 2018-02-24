@@ -3,7 +3,7 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { LinePath } from '@vx/shape';
-
+import { getPrimitives } from '@vx/primitives';
 const identity = x => x;
 
 LinePathAnnotation.propTypes = {
@@ -45,6 +45,8 @@ export default function LinePathAnnotation({
   labelStrokeWidth = 3,
   labelPaintOrder = 'stroke',
 }) {
+  const { Text } = getPrimitives();
+
   const endPoint = points[points.length - 1];
   return (
     <Group
@@ -63,7 +65,7 @@ export default function LinePathAnnotation({
         strokeWidth={strokeWidth}
       />
       {label &&
-        <text
+        <Text
           x={endPoint.x}
           y={endPoint.y}
           dx={labelDx}
@@ -76,7 +78,7 @@ export default function LinePathAnnotation({
           paintOrder={labelPaintOrder}
         >
           {label}
-        </text>
+        </Text>
       }
     </Group>
   );

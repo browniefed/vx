@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import reduceCSSCalc from 'reduce-css-calc';
 import getStringWidth from './util/getStringWidth';
+import { getPrimitives } from '@vx/primitives';
 
 class Text extends Component {
 
@@ -101,6 +102,8 @@ class Text extends Component {
       capHeight,
       ...textProps
     } = this.props;
+    const { Text, TSpan } = getPrimitives();
+
     const { wordsByLines } = this.state;
 
     const x = textProps.x + dx;
@@ -138,7 +141,7 @@ class Text extends Component {
     }
 
     return (
-      <text
+      <Text
         x={x}
         y={y}
         textAnchor={textAnchor}
@@ -146,12 +149,12 @@ class Text extends Component {
       >
         {
         wordsByLines.map((line, index) => (
-          <tspan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
+          <TSpan x={x} dy={index === 0 ? startDy : lineHeight} key={index}>
             {line.words.join(' ')}
-          </tspan>
+          </TSpan>
         ))
       }
-      </text>
+      </Text>
     );
   }
 }

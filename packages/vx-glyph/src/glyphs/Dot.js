@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Glyph from './Glyph';
+import { getPrimitives } from '@vx/primitives';
 
 export default function GlyphDot({
   top = 0,
@@ -16,9 +17,10 @@ export default function GlyphDot({
   strokeDasharray,
   ...restProps
 }) {
+  const { Circle } = getPrimitives();
   return (
     <Glyph top={top} left={left}>
-      <circle
+      <Circle
         className={classnames('vx-glyph-dot', className)}
         cx={cx}
         cy={cy}

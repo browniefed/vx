@@ -15,6 +15,8 @@ let base = {
   Use: "use",
   Defs: "defs",
   Stop: "stop",
+  TSpan: "tspan",
+  TextPath: "textpath",
 };
 
 export const inject = primitives => (base = primitives);

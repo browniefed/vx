@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getPrimitives } from '@vx/primitives';
 
 RadialGradient.propTypes = {
   id: PropTypes.string.isRequired,
@@ -26,27 +27,28 @@ export default function RadialGradient({
   transform,
   ...restProps
 }) {
+  const { Defs, Stop, RadialGradient: RadialGrad } = getPrimitives();
   return (
-    <defs>
-      <radialGradient
+    <Defs>
+      <RadialGrad
         id={id}
         gradientTransform={rotate ? `rotate(${rotate})` : transform}
         {...restProps}
       >
         {!!children && children}
         {!children &&
-          <stop
+          <Stop
             offset={fromOffset}
             stopColor={from}
             stopOpacity={fromOpacity}
           />}
         {!children &&
-          <stop
+          <Stop
             offset={toOffset}
             stopColor={to}
             stopOpacity={toOpacity}
           />}
       </radialGradient>
-    </defs>
+    </Defs>
   );
 }

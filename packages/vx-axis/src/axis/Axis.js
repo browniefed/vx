@@ -8,7 +8,7 @@ import center from '../utils/center';
 import identity from '../utils/identity';
 import getLabelTransform from '../utils/labelTransform';
 import ORIENT from '../constants/orientation';
-
+import { getPrimitives } from '@vx/primitives';
 const propTypes = {
   axisClassName: PropTypes.string,
   axisLineClassName: PropTypes.string,
@@ -85,7 +85,7 @@ export default function Axis({
   if (tickValues) values = tickValues;
   let format = scale.tickFormat ? scale.tickFormat() : identity;
   if (tickFormat) format = tickFormat;
-
+  const { Text } = getPrimitives();
   const range = scale.range();
   const range0 = range[0] + 0.5 - rangePadding;
   const range1 = range[range.length - 1] + 0.5 + rangePadding;
@@ -188,7 +188,7 @@ export default function Axis({
                 stroke={tickStroke}
               />
             )}
-            <text
+            <Text
               x={tickToPoint.x}
               y={
                 tickToPoint.y +
@@ -198,7 +198,7 @@ export default function Axis({
               {...tickLabelPropsObj}
             >
               {format(val, index)}
-            </text>
+            </Text>
           </Group>
         );
       })}
@@ -215,7 +215,7 @@ export default function Axis({
       )}
 
       {label && (
-        <text
+        <Text
           className={cx('vx-axis-label', labelClassName)}
           {...getLabelTransform({
             labelOffset,
@@ -228,7 +228,7 @@ export default function Axis({
           {...labelProps}
         >
           {label}
-        </text>
+        </Text>
       )}
     </Group>
   );

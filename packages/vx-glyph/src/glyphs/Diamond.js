@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { symbol, symbolDiamond } from 'd3-shape';
 import Glyph from './Glyph';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function GlyphDiamond({
   children,
@@ -12,12 +13,13 @@ export default function GlyphDiamond({
   size,
   ...restProps
 }) {
+  const { Path } = getPrimitives();
   const path = symbol();
   path.type(symbolDiamond);
   if (size) path.size(size);
   return (
     <Glyph top={top} left={left}>
-      <path
+      <Path
         className={cx('vx-glyph-diamond', className)}
         d={path()}
         {...additionalProps(restProps)}

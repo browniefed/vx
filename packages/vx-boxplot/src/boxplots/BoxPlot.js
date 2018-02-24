@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function BoxPlot({
   left = 0,
@@ -27,10 +28,11 @@ export default function BoxPlot({
   containerProps = {},
   ...restProps
 }) {
+  const { Line, Rect } = getPrimitives();
   const centerX = left + boxWidth / 2;
   return (
     <Group className={classnames('vx-boxplot', className)}>
-      <line
+      <Line
         className="vx-boxplot-max"
         x1={centerX - boxWidth / 4}
         y1={max}
@@ -45,7 +47,7 @@ export default function BoxPlot({
           x2: centerX + boxWidth / 4
         })}
       />
-      <line
+      <Line
         x1={centerX}
         y1={max}
         x2={centerX}
@@ -53,7 +55,7 @@ export default function BoxPlot({
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
-      <rect
+      <Line
         x={left}
         y={thirdQuartile}
         width={boxWidth}
@@ -76,7 +78,7 @@ export default function BoxPlot({
           x2: left + boxWidth
         })}
       />
-      <line
+      <Line
         className="vx-boxplot-median"
         x1={left}
         y1={median}
@@ -91,7 +93,7 @@ export default function BoxPlot({
           x2: left + boxWidth
         })}
       />
-      <line
+      <Line
         x1={centerX}
         y1={firstQuartile}
         x2={centerX}
@@ -99,7 +101,7 @@ export default function BoxPlot({
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
-      <line
+      <Line
         className="vx-boxplot-min"
         x1={centerX - boxWidth / 4}
         y1={min}
@@ -115,7 +117,7 @@ export default function BoxPlot({
         })}
       />
       {container &&
-        <rect
+        <Rect
           x={left}
           y={max}
           width={boxWidth}

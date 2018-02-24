@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getPrimitives } from '@vx/primitives';
 
 LinearGradient.propTypes = {
   id: PropTypes.string.isRequired,
@@ -40,9 +41,11 @@ export default function LinearGradient({
     y1 = '0';
     y2 = '1';
   }
+  const { Defs, Stop, LinearGradient: LinearGrad } = getPrimitives();
+
   return (
-    <defs>
-      <linearGradient
+    <Defs>
+      <LinearGrad
         id={id}
         x1={x1}
         y1={y1}
@@ -53,18 +56,18 @@ export default function LinearGradient({
       >
         {!!children && children}
         {!children &&
-          <stop
+          <Stop
             offset={fromOffset}
             stopColor={from}
             stopOpacity={fromOpacity}
           />}
         {!children &&
-          <stop
+          <Stop
             offset={toOffset}
             stopColor={to}
             stopOpacity={toOpacity}
           />}
       </linearGradient>
-    </defs>
+    </Defs>
   );
 }

@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@vx/group": "0.0.153",
+    "@vx/primitives": "^0.0.158",
     "classnames": "^2.2.5",
     "d3-voronoi": "^1.1.2"
   },
