@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function HeatmapRect({
   className,
@@ -20,6 +21,7 @@ export default function HeatmapRect({
   count = d => d.count,
   ...restProps
 }) {
+  const { Rect } = getPrimitives();
   const width = binWidth - gap;
   const height = binHeight - gap;
   return (
@@ -33,7 +35,7 @@ export default function HeatmapRect({
           >
             {bins(d).map((b, j) => {
               return (
-                <rect
+                <Rect
                   key={`heatmap-tile-rect-${j}`}
                   className={cx('vx-heatmap-rect', className)}
                   fill={colorScale(count(b))}

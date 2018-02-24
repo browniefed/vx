@@ -35,6 +35,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
+    "@vx/primitives": "^0.0.158",
     "@vx/group": "0.0.153",
     "classnames": "^2.2.5",
     "d3-force": "^1.0.6"

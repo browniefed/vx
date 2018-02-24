@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { localPoint } from '@vx/event';
+import { getPrimitives } from '@vx/primitives';
 
 export default class Drag extends React.Component {
   static propTypes = {
@@ -75,11 +76,13 @@ export default class Drag extends React.Component {
   render() {
     const { x, y, dx, dy, isDragging } = this.state;
     const { children, width, height, captureDragArea } = this.props;
+    const { G, Rect } = getPrimitives();
+
     return (
-      <g>
+      <G>
         {isDragging &&
           captureDragArea && (
-            <rect
+            <Rect
               width={width}
               height={height}
               onMouseMove={this.dragMove}
@@ -97,7 +100,7 @@ export default class Drag extends React.Component {
           dragMove: this.dragMove,
           dragStart: this.dragStart,
         })}
-      </g>
+      </G>
     );
   }
 }

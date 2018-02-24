@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function HeatmapCircle({
   className,
@@ -19,6 +20,8 @@ export default function HeatmapCircle({
   ...restProps
 }) {
   const r = radius - gap;
+  const { Circle } = getPrimitives();
+
   return (
     <Group>
       {data.map((d, i) => {
@@ -30,7 +33,7 @@ export default function HeatmapCircle({
           >
             {bins(d).map((b, j) => {
               return (
-                <circle
+                <Circle
                   key={`heatmap-tile-circle-${j}`}
                   className={cx('vx-heatmap-circle', className)}
                   fill={colorScale(count(b))}

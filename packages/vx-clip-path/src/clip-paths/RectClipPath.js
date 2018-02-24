@@ -1,5 +1,6 @@
 import React from 'react';
 import ClipPath from './ClipPath';
+import { getPrimitives } from '@vx/primitives';
 
 export default ({
   id,
@@ -8,14 +9,18 @@ export default ({
   width = 1,
   height = 1,
   ...restProps,
-}) => (
-  <ClipPath id={id}>
-    <rect
-      x={x}
-      y={y}
-      width={width}
-      height={height}
-      {...restProps}
-    />
-  </ClipPath>
-);
+}) => {
+  const { Rect } = getPrimitives();
+
+  return (
+    <ClipPath id={id}>
+      <Rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        {...restProps}
+      />
+    </ClipPath>
+  )
+}

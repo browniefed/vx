@@ -49,6 +49,7 @@
     "react": "^15.0.0-0 || ^16.0.0-0"
   },
   "dependencies": {
+    "@vx/primitives": "^0.0.158",
     "classnames": "^2.2.5",
     "recompose": "^0.23.1"
   },

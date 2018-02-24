@@ -4,6 +4,7 @@ import { Group } from '@vx/group';
 import { scaleLinear } from '@vx/scale';
 import { line, curveCardinal } from 'd3-shape';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 export default function ViolinPlot({
   left = 0,
@@ -57,9 +58,11 @@ export default function ViolinPlot({
     const leftCurvePath = leftCurve([...binData].reverse());
     path = `${rightCurvePath} ${leftCurvePath.replace('M','L')} Z`;
   }
+  const { Path } = getPrimitives();
+
   return (
     <Group className={classnames('vx-violin', className)}>
-      <path
+      <Path
         d={path}
         stroke={stroke}
         strokeWidth={strokeWidth}

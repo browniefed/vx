@@ -2,6 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { Line } from '@vx/shape';
 import { Group } from '@vx/group';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Marker({
   top = 0,
@@ -27,6 +28,7 @@ export default function Marker({
   labelPaintOrder = 'stroke',
   className,
 }) {
+  const { Text } = getPrimitives();
   return (
     <Group top={top} left={left}>
       <Line
@@ -39,7 +41,7 @@ export default function Marker({
         transform={transform}
       />
       {label &&
-        <text
+        <Text
           x={from.x}
           y={from.y}
           dx={labelDx}
@@ -52,7 +54,7 @@ export default function Marker({
           paintOrder={labelPaintOrder}
         >
           {label}
-        </text>
+        </Text>
       }
     </Group>
   );

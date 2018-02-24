@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/hshoff/vx#readme",
   "dependencies": {
+    "@vx/primitives": "^0.0.158",
     "@vx/group": "0.0.153",
     "@vx/scale": "0.0.153",
     "classnames": "^2.2.5",

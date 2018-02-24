@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
 import { geoGraticule } from 'd3-geo';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Graticule({
   graticule,
@@ -27,10 +28,12 @@ export default function Graticule({
   if (stepMinor) currGraticule.stepMinor(stepMinor);
   if (precision) currGraticule.stepMinor(precision);
 
+  const { Path, G } = getPrimitives();
+
   return (
     <Group className={`vx-geo-graticule`}>
       {graticule &&
-        <path
+        <Path
           d={graticule(currGraticule())}
           fill="none"
           stroke="black"
@@ -38,8 +41,8 @@ export default function Graticule({
         />}
       {lines &&
         currGraticule.lines().map((line, i) =>
-          <g key={i}>
-            <path
+          <G key={i}>
+            <Path
               d={lines(line)}
               fill="none"
               stroke="black"
@@ -48,10 +51,10 @@ export default function Graticule({
                 index: i,
               })}
             />
-          </g>,
+          </G>,
         )}
       {outline &&
-        <path
+        <Path
           d={outline(currGraticule.outline())}
           fill="none"
           stroke="black"

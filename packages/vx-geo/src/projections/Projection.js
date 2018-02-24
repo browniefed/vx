@@ -10,6 +10,7 @@ import {
   geoMercator,
   geoPath,
 } from 'd3-geo';
+import { getPrimitives } from '@vx/primitives';
 
 // TODO: Implement all projections of d3-geo
 const projectionMapping = {
@@ -56,6 +57,7 @@ export default function Projection({
   if (fitSize) currProjection.fitSize(...fitSize);
 
   const path = geoPath().projection(currProjection);
+  const { Path, G } = getPrimitives();
 
   if (pointRadius) path.pointRadius(pointRadius);
 
@@ -75,8 +77,8 @@ export default function Projection({
         let c;
         if (centroid) c = path.centroid(feature);
         return (
-          <g key={`${projection}-${i}`}>
-            <path
+          <G key={`${projection}-${i}`}>
+            <Path
               className={cx(`vx-geo-${projection}`, className)}
               d={path(feature)}
               ref={innerRef && innerRef(feature, i)}
@@ -87,7 +89,7 @@ export default function Projection({
               })}
             />
             {centroid && centroid(c, feature)}
-          </g>
+          </G>
         );
       })}
       {/* TODO: Maybe find a different way to pass projection function to use for example invert */}

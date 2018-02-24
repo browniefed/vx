@@ -55,6 +55,7 @@
     ]
   },
   "dependencies": {
+    "@vx/primitives": "^0.0.158",
     "@vx/event": "0.0.153"
   }
 }

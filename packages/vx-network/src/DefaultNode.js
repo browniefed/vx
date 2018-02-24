@@ -1,5 +1,9 @@
 import React from 'react';
+import { getPrimitives } from '@vx/primitives';
 
 export default function DefaultNode() {
-  return <circle r={15} fill="#21D4FD" />;
+  const { Circle } = getPrimitives();
+
+
+  return <Circle r={15} fill="#21D4FD" />;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getPrimitives } from '@vx/primitives';
 
 export default function Pattern({
   id,
@@ -7,17 +8,19 @@ export default function Pattern({
   height,
   children,
 }) {
+  const { Defs, Pattern } = getPrimitives();
+
   return (
-    <defs>
-      <pattern
+    <Defs>
+      <Pattern
         id={id}
         width={width}
         height={height}
         patternUnits="userSpaceOnUse"
       >
         {children}
-      </pattern>
-    </defs>
+      </Pattern>
+    </Defs>
   );
 }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Pattern from './Pattern';
 import Orientation from '../constants';
+import { getPrimitives } from '@vx/primitives';
 
 function pathForOrientation({
   height,
@@ -43,6 +44,7 @@ export default function PatternLines({
   className,
 }) {
   if (!Array.isArray(orientation)) orientation = [orientation];
+  const { Rect, Path } = getPrimitives();
 
   return (
     <Pattern
@@ -51,7 +53,7 @@ export default function PatternLines({
       height={height}
     >
       {!!background &&
-        <rect
+        <Rect
           className={cx('vx-pattern-line-background')}
           width={width}
           height={height}
@@ -60,7 +62,7 @@ export default function PatternLines({
       }
       {orientation.map((o, i) => {
         return (
-          <path
+          <Path
             key={`vx-${id}-line-${o}-${i}`}
             className={cx('vx-pattern-line', className)}
             d={pathForOrientation({ orientation: o, height })}

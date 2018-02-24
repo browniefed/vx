@@ -1,8 +1,11 @@
 import React from 'react';
+import { getPrimitives } from '@vx/primitives';
 
 export default function DefaultLink({ link }) {
+  const { Line } = getPrimitives();
+
   return (
-    <line
+    <Line
       x1={link.source.x}
       y1={link.source.y}
       x2={link.target.x}

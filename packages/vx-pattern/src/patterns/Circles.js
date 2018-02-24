@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cxx from 'classnames';
 import Pattern from './Pattern';
+import { getPrimitives } from '@vx/primitives';
 
 /**
  * Creates an array of cirlces for a list of corners
@@ -17,8 +18,10 @@ export function createCircles({
   strokeDasharray,
   className
 }) {
+  const { Circle } = getPrimitives();
+
   return corners.map(([cornerX, cornerY]) =>
-    <circle
+    <Circle
       key={`${id}-complement-${cornerX}-${cornerY}`}
       className={cxx('vx-pattern-circle vx-pattern-circle-complement', className)}
       cx={cornerX}

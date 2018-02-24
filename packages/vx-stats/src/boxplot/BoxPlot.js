@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Group } from '@vx/group';
 import additionalProps from '../util/additionalProps';
+import { getPrimitives } from '@vx/primitives';
 
 function verticalToHorizontal([x1, y1, x2, y2]){
   return [y1, x1, y2, x2];
@@ -95,13 +96,16 @@ export default function BoxPlot({
     containerPos = verticalToHorizontal(containerPos);
     containerPos[0] = Math.min(...valueRange);
   }
+
+  const { Circle, Line, Rect } = getPrimitives();
+
   return (
     <Group className={classnames('vx-boxplot', className)}>
       {outliers.map((d, i) => {
         const cx = horizontal ? valueScale(d) : center;
         const cy = horizontal ? center : valueScale(d);
         return (
-          <circle
+          <Circle
             key={i}
             className="vx-boxplot-outlier"
             cx={cx}
@@ -119,7 +123,7 @@ export default function BoxPlot({
           />);
         })
       }
-      <line
+      <Line
         className="vx-boxplot-max"
         x1={maxLinePos[0]}
         y1={maxLinePos[1]}
@@ -136,7 +140,7 @@ export default function BoxPlot({
           y2: maxLinePos[3],
         })}
       />
-      <line
+      <Line
         x1={maxToBoxLinePos[0]}
         y1={maxToBoxLinePos[1]}
         x2={maxToBoxLinePos[2]}
@@ -144,7 +148,7 @@ export default function BoxPlot({
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
-      <rect
+      <Rect
         className="vx-boxplot-box"
         x={boxPos[0]}
         y={boxPos[1]}
@@ -170,7 +174,7 @@ export default function BoxPlot({
           y2: boxPos[1] + boxPos[3],
         })}
       />
-      <line
+      <Line
         className="vx-boxplot-median"
         x1={medianLinePos[0]}
         y1={medianLinePos[1]}
@@ -187,7 +191,7 @@ export default function BoxPlot({
           y2: medianLinePos[3],
         })}
       />
-      <line
+      <Line
         x1={minToBoxLinePos[0]}
         y1={minToBoxLinePos[1]}
         x2={minToBoxLinePos[2]}
@@ -195,7 +199,7 @@ export default function BoxPlot({
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
-      <line
+      <Line
         className="vx-boxplot-min"
         x1={minLinePos[0]}
         y1={minLinePos[1]}
@@ -213,7 +217,7 @@ export default function BoxPlot({
         })}
       />
       {container &&
-        <rect
+        <Rect
           x={containerPos[0]}
           y={containerPos[1]}
           width={containerPos[2]}

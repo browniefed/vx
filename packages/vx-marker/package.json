@@ -43,6 +43,7 @@
     "regenerator-runtime": "^0.10.5"
   },
   "dependencies": {
+    "@vx/primitives": "^0.0.158",
     "@vx/group": "0.0.153",
     "@vx/shape": "^0.0.158",
     "classnames": "^2.2.5"

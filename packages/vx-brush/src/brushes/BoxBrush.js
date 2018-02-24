@@ -1,7 +1,10 @@
 import React from 'react';
 import cx from 'classnames';
+import { getPrimitives } from '@vx/primitives';
 
 export default (props) => {
+  const { Rect, G } = getPrimitives();
+
   const {
     brush,
     className,
@@ -18,9 +21,9 @@ export default (props) => {
   const width = Math.abs(start.x - end.x);
   const height = Math.abs(start.y - end.y);
   return (
-    <g className={cx("vx-brush", className)}>
+    <G className={cx("vx-brush", className)}>
       {isBrushing &&
-        <rect
+        <Rect
           fill={fill}
           stroke={stroke}
           strokeWidth={strokeWidth}
@@ -31,6 +34,6 @@ export default (props) => {
           {...otherProps}
         />
       }
-    </g>
+    </G>
   );
 }

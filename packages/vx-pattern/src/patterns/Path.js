@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Pattern from './Pattern';
+import { getPrimitives } from '@vx/primitives';
 
 export default function PatternPath({
   id,
@@ -17,6 +18,8 @@ export default function PatternPath({
   background,
   className,
 }) {
+  const { Path, Rect } = getPrimitives();
+
   return (
     <Pattern
       id={id}
@@ -24,13 +27,13 @@ export default function PatternPath({
       height={height}
     >
       {!!background &&
-        <rect
+        <Rect
           width={width}
           height={height}
           fill={background}
         />
       }
-      <path
+      <Path
         className={cx('vx-pattern-path', className)}
         d={path}
         fill={fill}

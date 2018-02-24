@@ -1,5 +1,6 @@
 import React from 'react';
 import ClipPath from './ClipPath';
+import { getPrimitives } from '@vx/primitives';
 
 export default ({
   id,
@@ -7,14 +8,16 @@ export default ({
   cy,
   r,
   ...restProps,
-}) => (
-  <ClipPath id={id}>
-    <circle
+}) => {
+  const { Circle } = getPrimitives();
+
+  return (<ClipPath id={id}>
+    <Circle
       cx={cx}
       cy={cy}
       r={r}
       {...restProps}
     />
-  </ClipPath>
-);
+  </ClipPath>)
+}
 
