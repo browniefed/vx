@@ -13,7 +13,12 @@ import Patterns from "./demos/patterns";
 import StackedAreas from "./demos/stacked_areas";
 import Glyphs from "./demos/glyphs";
 import Axis from "./demos/axis";
-import BarGroups from "./demos/bargroups";
+import BarGroups from "./demos/bar_groups";
+import BarStack from "./demos/bar_stack";
+import HeatMap from "./demos/heatmap";
+import LineRadial from "./demos/lineradial";
+import Pie from "./demos/pies";
+import Trees from "./demos/trees";
 
 buildInject(RNSvg);
 
@@ -28,7 +33,12 @@ const RootNav = StackNavigator(
     StackedAreas,
     Glyphs,
     Axis,
-    BarGroups
+    BarGroups,
+    BarStack,
+    HeatMap,
+    LineRadial,
+    Pie,
+    Trees,
   },
   {
     headerMode: "none",

@@ -17,6 +17,7 @@
     "@vx/group": "^0.0.153",
     "@vx/hierarchy": "^0.0.158",
     "@vx/mock-data": "^0.0.153",
+    "@vx/heatmap": "^0.0.158",
     "@vx/scale": "^0.0.153",
     "@vx/shape": "^0.0.158",
     "d3-array": "^1.2.1",

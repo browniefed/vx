@@ -10,82 +10,81 @@ import { timeParse, timeFormat } from "d3-time-format";
 import { extent, max } from "d3-array";
 
 const { width, height } = Dimensions.get("window");
-const { BarGroup } = Shape;
+const { BarStack } = Shape;
 
-const data = cityTemperature.slice(0, 4);
+const data = cityTemperature.slice(0, 12);
+
 const keys = Object.keys(data[0]).filter(d => d !== "date");
 const parseDate = timeParse("%Y%m%d");
 const format = timeFormat("%b %d");
 const formatDate = date => format(parseDate(date));
 
 // accessors
-const x0 = d => d.date;
+const x = d => d.date;
+const y = d => d.value;
+
+const totals = data.reduce((ret, cur) => {
+  const t = keys.reduce((dailyTotal, k) => {
+    dailyTotal += +cur[k];
+    return dailyTotal;
+  }, 0);
+  ret.push(t);
+  return ret;
+}, []);
 
 const margin = {
   top: 40,
 };
 
-
 // yScale is getting set at a func instead of 0 for the y Rect
 
-class BarGroups extends Component {
+class BarStacks extends Component {
   render() {
     // bounds
     const xMax = width;
     const yMax = height - margin.top - 100;
 
     // // scales
-    const x0Scale = scaleBand({
+    const xScale = scaleBand({
       rangeRound: [0, xMax],
-      domain: data.map(x0),
+      domain: data.map(x),
       padding: 0.2,
       tickFormat: () => val => formatDate(val),
     });
-    const x1Scale = scaleBand({
-      rangeRound: [0, x0Scale.bandwidth()],
-      domain: keys,
-      padding: 0.1,
-    });
     const yScale = scaleLinear({
       rangeRound: [yMax, 0],
-      domain: [
-        0,
-        max(data, d => {
-          return max(keys, key => d[key]);
-        }),
-      ],
+      nice: true,
+      domain: [0, max(totals)],
     });
     const zScale = scaleOrdinal({
       domain: keys,
-      range: ["#aeeef8", "#e5fd3d", "#9caff6"],
+      range: ["#6c5efb", "#c998ff", "#a44afe"],
     });
 
     return (
       <Svg width={width} height={height}>
-        <Rect x={0} y={0} width={width} height={height} fill="#612efb" />
-        <BarGroup
+        <Rect x={0} y={0} width={width} height={height} fill="#eaedff" />
+        <BarStack
           top={margin.top}
           data={data}
           keys={keys}
           height={yMax}
-          x0={x0}
-          x0Scale={x0Scale}
-          x1Scale={x1Scale}
+          x={x}
+          xScale={xScale}
           yScale={yScale}
           zScale={zScale}
-          rx={4}
           onPress={data => event => {
+            if (!events) return;
             alert(`clicked: ${JSON.stringify(data)}`);
           }}
         />
         <AxisBottom
-          scale={x0Scale}
+          scale={xScale}
           top={yMax + margin.top}
-          stroke="#e5fd3d"
-          tickStroke="#e5fd3d"
-          hideAxisLine
+          stroke="#a44afe"
+          tickStroke="#a44afe"
           tickLabelProps={(value, index) => ({
-            fill: "#e5fd3d",
+            fill: "#a44afe",
             fontSize: 11,
             textAnchor: "middle",
           })}
@@ -95,4 +94,4 @@ class BarGroups extends Component {
   }
 }
 
-export default BarGroups;
+export default BarStacks;

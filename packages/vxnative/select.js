@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 import { TouchableOpacity, Text, StyleSheet, ScrollView } from "react-native";
 
-const screens = ["Lines", "Bars", "Dots", "Patterns", "Areas", "Glyphs", "StackedAreas", "Axis", "BarGroups"];
+const screens = [
+  "Lines",
+  "Bars",
+  "Dots",
+  "Patterns",
+  "Areas",
+  "Glyphs",
+  "StackedAreas",
+  "Axis",
+  "BarGroups",
+  "BarStack",
+  "HeatMap",
+  "LineRadial",
+  "Pie",
+  "Trees",
+];
 
 class Select extends Component {
   render() {
@@ -22,7 +37,7 @@ class Select extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40
+    padding: 40,
   },
 });
 
