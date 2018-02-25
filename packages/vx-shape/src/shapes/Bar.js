@@ -30,7 +30,7 @@ export default function Bar({
   ...restProps,
 }) {
   const { Rect } = getPrimitives();
-
+  
   return (
     <Rect
       ref={innerRef}

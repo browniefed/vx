@@ -20,6 +20,7 @@ export default function BarGroup({
   ...restProps
 }) {
   const format = x0Scale.tickFormat ? x0Scale.tickFormat() : d => d;
+
   return (
     <Group
       className={cx('vx-bar-group', className)}
