@@ -33,7 +33,7 @@ class Glphys extends Component {
 
     return (
       <Svg width={width} height={height}>
-        <Rect x={0} y={0} width={width} height={height} fill="#00f2ff" rx={14} />
+        <Rect x={0} y={0} width={width} height={height} fill="#00f2ff" />
         <Group>
           <LinePath
             data={data}

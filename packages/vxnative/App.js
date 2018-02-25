@@ -18,7 +18,8 @@ import BarStack from "./demos/bar_stack";
 import HeatMap from "./demos/heatmap";
 import LineRadial from "./demos/lineradial";
 import Pie from "./demos/pies";
-import Trees from "./demos/trees";
+import Trees from "./demos/trees"
+import Dendogram from "./demos/dendogram";
 
 buildInject(RNSvg);
 
@@ -39,6 +40,7 @@ const RootNav = StackNavigator(
     LineRadial,
     Pie,
     Trees,
+    Dendogram,
   },
   {
     headerMode: "none",
