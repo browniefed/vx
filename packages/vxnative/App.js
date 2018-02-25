@@ -22,6 +22,8 @@ import Trees from "./demos/trees"
 import Dendogram from "./demos/dendogram";
 import Voronoi from "./demos/voronoi";
 import BoxPlot from "./demos/boxplot";
+import Geo from "./demos/geo";
+
 buildInject(RNSvg);
 
 const RootNav = StackNavigator(
@@ -44,6 +46,7 @@ const RootNav = StackNavigator(
     Dendogram,
     Voronoi,
     BoxPlot,
+    Geo
   },
   {
     headerMode: "none",
