@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import * as RNSvg from "react-native-svg";
 import { buildInject } from "@vx/primitives";
-import { StackNavigator } from "react-navigation";
+import { TabNavigator } from "react-navigation";
 
 import Home from "./select";
 import Lines from "./demos/lines";
@@ -18,23 +18,30 @@ import BarStack from "./demos/bar_stack";
 import HeatMap from "./demos/heatmap";
 import LineRadial from "./demos/lineradial";
 import Pie from "./demos/pies";
-import Trees from "./demos/trees"
+import Trees from "./demos/trees";
 import Dendogram from "./demos/dendogram";
 import Voronoi from "./demos/voronoi";
 import BoxPlot from "./demos/boxplot";
 import Geo from "./demos/geo";
+import Network from "./demos/network";
+import Pack from "./demos/pack";
+import BarStackHorizontal from "./demos/bar_stack_horizontal";
+import LinkTypes from "./demos/link_types";
+import Radar from "./demos/radar";
+import Treemap from "./demos/treemap";
+import DragOne from "./demos/drag_one";
 
 buildInject(RNSvg);
 
-const RootNav = StackNavigator(
+const RootNav = TabNavigator(
   {
-    Home,
+    // Home,
     Lines,
     Bars,
     Areas,
     Dots,
-    Patterns,
-    StackedAreas,
+    // Patterns,
+    // StackedAreas,
     Glyphs,
     Axis,
     BarGroups,
@@ -45,11 +52,23 @@ const RootNav = StackNavigator(
     Trees,
     Dendogram,
     Voronoi,
-    BoxPlot,
-    Geo
+    // BoxPlot,
+    Geo,
+    Network,
+    Pack,
+    BarStackHorizontal,
+    Radar,
+    Treemap,
+    // LinkTypes,
+    // DragOne
   },
   {
     headerMode: "none",
+    swipeEnabled: true,
+    animationEnabled: true,
+    navigationOptions: {
+      tabBarVisible: false,
+    }
   },
 );
 
