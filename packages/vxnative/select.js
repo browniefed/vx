@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TouchableOpacity, Text, StyleSheet, ScrollView } from "react-native";
 
-const screens = ["Lines", "Bars", "Dots", "Patterns", "Areas", "Glyphs", "StackedAreas"];
+const screens = ["Lines", "Bars", "Dots", "Patterns", "Areas", "Glyphs", "Axis", "StackedAreas"];
 
 class Select extends Component {
   render() {

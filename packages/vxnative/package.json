@@ -8,6 +8,7 @@
     "haul": "haul"
   },
   "dependencies": {
+    "@vx/axis": "^0.0.158",
     "@vx/curve": "^0.0.158",
     "@vx/primitives": "^0.0.158",   
     "@vx/glyph": "^0.0.158",

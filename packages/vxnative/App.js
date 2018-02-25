@@ -12,6 +12,7 @@ import Dots from "./demos/dots";
 import Patterns from "./demos/patterns";
 import StackedAreas from "./demos/stacked_areas";
 import Glyphs from "./demos/glyphs";
+import Axis from "./demos/axis";
 
 buildInject(RNSvg);
 
@@ -25,6 +26,7 @@ const RootNav = StackNavigator(
     Patterns,
     StackedAreas,
     Glyphs,
+    Axis,
   },
   {
     headerMode: "none",
