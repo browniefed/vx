@@ -20,7 +20,8 @@ import LineRadial from "./demos/lineradial";
 import Pie from "./demos/pies";
 import Trees from "./demos/trees"
 import Dendogram from "./demos/dendogram";
-
+import Voronoi from "./demos/voronoi";
+import BoxPlot from "./demos/boxplot";
 buildInject(RNSvg);
 
 const RootNav = StackNavigator(
@@ -41,6 +42,8 @@ const RootNav = StackNavigator(
     Pie,
     Trees,
     Dendogram,
+    Voronoi,
+    BoxPlot,
   },
   {
     headerMode: "none",

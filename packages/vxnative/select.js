@@ -17,6 +17,8 @@ const screens = [
   "Pie",
   "Trees",
   "Dendogram",
+  "Voronoi",
+  "BoxPlot",
 ];
 
 class Select extends Component {

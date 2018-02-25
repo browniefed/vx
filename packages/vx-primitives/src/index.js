@@ -18,6 +18,7 @@ let base = {
   TSpan: "tspan",
   TextPath: "textpath",
   Pattern: "pattern",
+  ClipPath: "clipPath",
 };
 
 export const inject = primitives => (base = primitives);
