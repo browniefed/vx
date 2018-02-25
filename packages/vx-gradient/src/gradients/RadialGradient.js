@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { getPrimitives } from '@vx/primitives';
 
@@ -29,13 +29,10 @@ export default function RadialGradient({
 }) {
   const { Defs, Stop, RadialGradient: RadialGrad } = getPrimitives();
 
-  const stops = (
-    <Fragment>
-      <Stop offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />
-      <Stop offset={toOffset} stopColor={to} stopOpacity={toOpacity} />
-    </Fragment>
-  );
-
+  const stops = [
+    <Stop key="from" offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />,
+    <Stop key="to" offset={toOffset} stopColor={to} stopOpacity={toOpacity} />,
+  ];
   return (
     <Defs>
       <RadialGrad

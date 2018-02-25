@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { getPrimitives } from "@vx/primitives";
 
@@ -26,9 +26,9 @@ export default function LinearGradient({
   y1,
   x2,
   y2,
-  fromOffset = "0",
+  fromOffset = "0%",
   fromOpacity = 1,
-  toOffset = "1",
+  toOffset = "100%",
   toOpacity = 1,
   rotate,
   transform,
@@ -43,12 +43,11 @@ export default function LinearGradient({
   }
   const { Defs, Stop, LinearGradient: LinearGrad } = getPrimitives();
 
-  const stops = (
-    <Fragment>
-      <Stop offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />
-      <Stop offset={toOffset} stopColor={to} stopOpacity={toOpacity} />
-    </Fragment>
-  );
+  const stops = [
+    <Stop key="from" offset={fromOffset} stopColor={from} stopOpacity={fromOpacity} />,
+    <Stop key="to" offset={toOffset} stopColor={to} stopOpacity={toOpacity} />,
+  ];
+
   return (
     <Defs>
       <LinearGrad id={id} x1={x1} y1={y1} x2={x2} y2={y2} {...restProps}>
