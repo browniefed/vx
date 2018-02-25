@@ -14,7 +14,12 @@ const { AreaClosed, LinePath, Line } = Shape;
 const { width, height } = Dimensions.get("window");
 
 const data = genDateValue(20);
-
+const margin = {
+  bottom: 120,
+  left: 60,
+  right: 40,
+  top: 20,
+};
 // accessors
 const x = d => d.date;
 const y = d => d.value;
@@ -34,8 +39,8 @@ function numTicksForWidth(width) {
 
 class Dots extends Component {
   render() {
-    const xMax = width;
-    const yMax = height;
+    const xMax = width - margin.left - margin.right;
+    const yMax = height - margin.top - margin.bottom;
     // scales
     const xScale = scaleTime({
       range: [0, xMax],
@@ -56,8 +61,9 @@ class Dots extends Component {
         <GradientOrangeRed id="linear" vertical={false} fromOpacity={0.8} toOpacity={0.3} />
         <Rect x={0} y={0} width={width} height={height} fill="#f4419f" />
         <Grid
-          top={0}
-          left={0}
+          top={margin.top}
+          left={margin.left}
+          xScale={xScale}
           xScale={xScale}
           yScale={yScale}
           stroke="rgba(142, 32, 95, 0.9)"
@@ -66,7 +72,7 @@ class Dots extends Component {
           numTicksRows={numTicksForHeight(height)}
           numTicksColumns={numTicksForWidth(width)}
         />
-        <Group>
+        <Group top={margin.top} left={margin.left}>
           <AreaClosed
             data={data}
             xScale={xScale}
@@ -90,8 +96,8 @@ class Dots extends Component {
           />
         </Group>
         <AxisLeft
-          top={0}
-          left={0}
+          top={margin.top}
+          left={margin.left}
           scale={yScale}
           hideZero
           numTicks={numTicksForHeight(height)}
@@ -114,8 +120,8 @@ class Dots extends Component {
           })}
         />
         <AxisBottom
-          top={height}
-          left={0}
+          top={height - margin.bottom}
+          left={margin.left}
           scale={xScale}
           numTicks={numTicksForWidth(width)}
           label="time"
@@ -134,7 +140,7 @@ class Dots extends Component {
                     <Group key={`vx-tick-${tick.value}-${i}`} className={"vx-axis-tick"}>
                       <Line from={tick.from} to={tick.to} stroke={tickColor} />
                       <Text
-                        transform={`translate(${tickX}, ${tickY}) rotate(${tickRotate})`}
+                        transform={`translate(${tickX}, ${tickY}), rotate(${tickRotate})`}
                         fontSize={tickLabelSize}
                         textAnchor="middle"
                         fill={tickColor}
